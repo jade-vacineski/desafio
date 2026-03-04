@@ -1,4 +1,4 @@
-namespace DesafioItau.src.Domain.Cotacoes
+namespace DesafioItau.src.Domain.Cotacoes.Entities
 {
     public class Cotacao
     {

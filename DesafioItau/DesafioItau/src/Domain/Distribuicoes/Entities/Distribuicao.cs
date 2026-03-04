@@ -1,4 +1,4 @@
-namespace DesafioItau.src.Domain.Distribuicoes
+namespace DesafioItau.src.Domain.Distribuicoes.Entities
 {
     public class Distribuicao
     {
