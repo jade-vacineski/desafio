@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using DesafioItau.src.Domain.Entities;
+using DesafioItau.src.Domain.Clientes.Entities;
 
 namespace DesafioItau.src.Infrastructure.Persistence.Configurations
 {
