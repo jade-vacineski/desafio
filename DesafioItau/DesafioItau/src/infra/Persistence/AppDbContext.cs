@@ -10,7 +10,7 @@ namespace DesafioItau.src.Infrastructure.Persistence
         {
         }
 
-        public DbSet<Clientes> Clientes { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

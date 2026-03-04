@@ -1,8 +1,7 @@
 using DesafioItau.src.Domain.exceptions;
 
-namespace DesafioItau.src.Domain.Clientes.Entities
-{
-    public class Clientes
+namespace DesafioItau.src.Domain.Clientes.Entities{
+    public class Cliente
     {
         public long Id { get; private set; }
         public string Nome { get; private set; }
@@ -12,9 +11,9 @@ namespace DesafioItau.src.Domain.Clientes.Entities
         public bool Ativo { get; private set; }
         public DateTime DataAdesao { get; private set; }
 
-        private Clientes() { }
+        private Cliente() { }
 
-        private Clientes(string nome, string cpf, string email, decimal valorMensal)
+        private Cliente(string nome, string cpf, string email, decimal valorMensal)
         {
             Nome = nome;
             Cpf = cpf;
@@ -24,7 +23,7 @@ namespace DesafioItau.src.Domain.Clientes.Entities
             DataAdesao = DateTime.UtcNow;
         }
 
-        public static Clientes Criar(
+        public static Cliente Criar(
        string nome,
        string cpf,
        string email,
@@ -33,7 +32,7 @@ namespace DesafioItau.src.Domain.Clientes.Entities
             if (valorMensal <= 0)
                 throw new ValorMensalInvalidoException();
 
-            return new Clientes(nome, cpf, email, valorMensal);
+            return new Cliente(nome, cpf, email, valorMensal);
         }
 
         public void Desativar()

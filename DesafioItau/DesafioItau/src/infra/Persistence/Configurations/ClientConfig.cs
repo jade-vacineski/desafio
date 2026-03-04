@@ -4,9 +4,9 @@ using DesafioItau.src.Domain.Clientes.Entities;
 
 namespace DesafioItau.src.Infrastructure.Persistence.Configurations
 {
-    public class ClienteConfig : IEntityTypeConfiguration<Clientes>
+    public class ClienteConfig : IEntityTypeConfiguration<Cliente>
     {
-        public void Configure(EntityTypeBuilder<Clientes> builder)
+        public void Configure(EntityTypeBuilder<Cliente> builder)
         {
             builder.ToTable("Clientes");
 
