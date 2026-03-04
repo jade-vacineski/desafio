@@ -1,6 +1,8 @@
 using System;
 using DesafioItau.src.Application.Clientes.CriarClientes;
+using DesafioItau.src.Domain.Clientes.repositories;
 using DesafioItau.src.Infrastructure.Persistence;
+using DesafioItau.src.infra.Persistence.repositories;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -18,6 +21,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     ));
 builder.Services.AddValidatorsFromAssemblyContaining<CriarClienteValidator>();
 builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddScoped<CriarClienteUseCase>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,6 +34,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapControllers();
 
 var summaries = new[]
 {
