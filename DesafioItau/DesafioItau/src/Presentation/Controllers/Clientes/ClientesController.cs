@@ -15,11 +15,11 @@ namespace DesafioItau.src.Presentation.Controllers.Clientes
     public class ClientesController : Controller
     {
 
-        private readonly CriarClienteUseCase _useCase;
+        private readonly CriarAdesaoUseCase _useCase;
 
 
 
-        public ClientesController(CriarClienteUseCase useCase)
+        public ClientesController(CriarAdesaoUseCase useCase)
         {
             _useCase = useCase;
         }

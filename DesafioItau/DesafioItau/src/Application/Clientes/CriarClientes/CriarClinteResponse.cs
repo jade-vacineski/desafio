@@ -16,6 +16,5 @@ namespace DesafioItau.src.Application.Clientes.CriarClientes
         public DateTime DataAdesao { get; init; }
         public ContaGrafica ContaGrafica { get; init; }
 
-
     }
 }

@@ -1,6 +1,8 @@
 using System;
 using DesafioItau.src.Application.Clientes.CriarClientes;
 using DesafioItau.src.Domain.Clientes.repositories;
+using DesafioItau.src.Domain.ContasGraficas.repositories;
+using DesafioItau.src.Domain.Custodias.repositories;
 using DesafioItau.src.Infrastructure.Persistence;
 using DesafioItau.src.infra.Persistence.repositories;
 using FluentValidation;
@@ -21,8 +23,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     ));
 builder.Services.AddValidatorsFromAssemblyContaining<CriarClienteValidator>();
 builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddScoped<CriarClienteUseCase>();
+builder.Services.AddScoped<CriarAdesaoUseCase>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IContaGraficaRepository, ContaGraficaRepository>();
+builder.Services.AddScoped<ICustodiaRepository, CustodiaRepository>();
 
 var app = builder.Build();
 

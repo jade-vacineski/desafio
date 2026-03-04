@@ -8,13 +8,16 @@ namespace DesafioItau.src.Domain.ContasGraficas.entities
 {
     public class ContaGrafica
     {
+        private object cliente;
+        private string v;
+
         public long Id { get; private set; }
         public long ClienteId { get; private set; }
         public string NumeroConta { get; private set; }
         public TipoConta Tipo { get; private set; }
         public DateTime DataCriacao { get; private set; }
 
-        private ContaGrafica() { }
+        private ContaGrafica(object cliente) { }
 
         private ContaGrafica(long clienteId, string numeroConta, TipoConta tipo)
         {
