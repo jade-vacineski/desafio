@@ -9,6 +9,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using DesafioItau.src.Application.Clientes.SaidaClientes.DesafioItau.src.Application.Clientes.SaidaClientes;
+using DesafioItau.src.Application.Clientes.AlterarValorMensal;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,8 @@ builder.Services.AddScoped<IContaGraficaRepository, ContaGraficaRepository>();
 builder.Services.AddScoped<ICustodiaRepository, CustodiaRepository>();
 builder.Services.AddScoped<CriarAdesaoUseCase>();
 builder.Services.AddScoped<SaidaClienteUseCase>();
+builder.Services.AddScoped<AlterarValorMensalUseCase>();
+
 
 var app = builder.Build();
 

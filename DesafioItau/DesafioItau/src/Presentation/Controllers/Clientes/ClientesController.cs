@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using DesafioItau.src.Application.Clientes.AlterarValorMensal;
 using DesafioItau.src.Application.Clientes.CriarClientes;
 using DesafioItau.src.Application.Clientes.SaidaClientes;
 using DesafioItau.src.Application.Clientes.SaidaClientes.DesafioItau.src.Application.Clientes.SaidaClientes;
@@ -22,11 +23,14 @@ namespace DesafioItau.src.Presentation.Controllers.Clientes
 
         private readonly SaidaClienteUseCase _saidaClienteUseCase;
 
+        private readonly AlterarValorMensalUseCase _alterarValorMensalUseCase;
 
-        public ClientesController(CriarAdesaoUseCase useCase, SaidaClienteUseCase saidaClienteUseCase)
+
+        public ClientesController(CriarAdesaoUseCase useCase, SaidaClienteUseCase saidaClienteUseCase, AlterarValorMensalUseCase alterarValorMensalUseCase)
         {
             _useCase = useCase;
             _saidaClienteUseCase = saidaClienteUseCase;
+            _alterarValorMensalUseCase = alterarValorMensalUseCase;
         }
 
         [HttpPost("adesao")]
@@ -36,7 +40,7 @@ namespace DesafioItau.src.Presentation.Controllers.Clientes
             return Created("/api/clientes/adesao", response);
         }
 
-        [HttpPost("{clienteId}/saida")] 
+        [HttpPost("{clienteId}/saida")]
         public async Task<IActionResult> SairCliente(long clienteId)
         {
             try
@@ -64,6 +68,32 @@ namespace DesafioItau.src.Presentation.Controllers.Clientes
                 });
             }
 
+        }
+
+        [HttpPut("{clienteId}/valor-mensal")]
+        public async Task<IActionResult> AlterarValorMensal(long clienteId, [FromBody] AlterarValorMensalRequest request)
+        {
+            try
+            {
+                var response = await _alterarValorMensalUseCase.ExecuteAsync(clienteId, request);
+                return Ok(response);
+            }
+            catch (ClienteNaoEncontradoException ex)
+            {
+                return NotFound(new
+                {
+                    erro = ex.Message,
+                    codigo = "CLIENTE_NAO_ENCONTRADO"
+                });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new
+                {
+                    erro = ex.Message,
+                    codigo = "VALOR_INVALIDO"
+                });
+            }
         }
     }
 }

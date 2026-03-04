@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DesafioItau.src.Domain.exceptions
 {
-    public abstract class ClienteNaoEncontradoException : Exception
+    public class ClienteNaoEncontradoException : DomainException
     {
          public ClienteNaoEncontradoException(string message) : base(message) { }
     }

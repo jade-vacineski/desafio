@@ -1,6 +1,7 @@
 using DesafioItau.src.Domain.exceptions;
 
-namespace DesafioItau.src.Domain.Clientes.Entities{
+namespace DesafioItau.src.Domain.Clientes.Entities
+{
     public class Cliente
     {
         public long Id { get; private set; }
@@ -41,6 +42,14 @@ namespace DesafioItau.src.Domain.Clientes.Entities{
                 throw new ClienteJaInativoException();
 
             Ativo = false;
+        }
+
+        public void AlterarValorMensal(decimal novoValor)
+        {
+            if (novoValor <= 0)
+                throw new ArgumentException("Valor mensal deve ser maior que zero.");
+
+            ValorMensal = novoValor;
         }
 
     }
