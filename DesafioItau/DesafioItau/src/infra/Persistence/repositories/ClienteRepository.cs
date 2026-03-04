@@ -31,5 +31,18 @@ namespace DesafioItau.src.infra.Persistence.repositories
             return await _context.Set<Cliente>()
                 .AnyAsync(c => c.Cpf == cpf);
         }
+
+         public async Task AtualizarAsync(Cliente cliente)
+        {
+            _context.Clientes.Update(cliente);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Cliente> ObterPorIdAsync(long clienteId)
+        {
+            return await _context.Clientes
+                .FirstOrDefaultAsync(c => c.Id == clienteId);
+        }
+
     }
 }

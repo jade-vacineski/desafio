@@ -10,5 +10,8 @@ namespace DesafioItau.src.Domain.Clientes.repositories
     {
         Task AddAsync(Cliente cliente);
         Task<bool> ExisteCpfAsync(string cpf);
+        Task AtualizarAsync(Cliente cliente);
+        Task<Cliente> ObterPorIdAsync(long clienteId);
+        
     }
 }

@@ -8,6 +8,7 @@ using DesafioItau.src.infra.Persistence.repositories;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using DesafioItau.src.Application.Clientes.SaidaClientes.DesafioItau.src.Application.Clientes.SaidaClientes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ builder.Services.AddScoped<CriarAdesaoUseCase>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IContaGraficaRepository, ContaGraficaRepository>();
 builder.Services.AddScoped<ICustodiaRepository, CustodiaRepository>();
+builder.Services.AddScoped<CriarAdesaoUseCase>();
+builder.Services.AddScoped<SaidaClienteUseCase>();
 
 var app = builder.Build();
 
