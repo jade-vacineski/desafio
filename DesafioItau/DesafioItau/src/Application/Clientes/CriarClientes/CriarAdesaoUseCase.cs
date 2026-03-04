@@ -26,9 +26,9 @@ public class CriarAdesaoUseCase
         this.custodiaRepository = custodiaRepository;
     }
 
-    public async Task ExecuteAsync(CriarClienteRequest request)
+    public async Task<CriarClienteResponse> ExecuteAsync(CriarClienteRequest request)
     {
-    
+
         if (await clienteRepository.ExisteCpfAsync(request.Cpf))
             throw new ClienteCpfDuplicadoException();
 
@@ -43,7 +43,7 @@ public class CriarAdesaoUseCase
         {
             await clienteRepository.AddAsync(cliente);
 
-            var contaFilhote = ContaGrafica.CriarFilhote(cliente.Id, GerarNumeroConta());
+            var contaFilhote = ContaGrafica.CriarFilhote(cliente.Id, GerarNumeroConta(cliente.Id));
             await contaRepository.AddAsync(contaFilhote);
 
 
@@ -51,11 +51,29 @@ public class CriarAdesaoUseCase
             await custodiaRepository.AddAsync(custodiaFilhote);
 
             scope.Complete();
+
+            return new CriarClienteResponse
+            {
+                ClienteId = cliente.Id,
+                Nome = cliente.Nome,
+                Cpf = cliente.Cpf,
+                Email = cliente.Email,
+                ValorMensal = cliente.ValorMensal,
+                Ativo = cliente.Ativo,
+                DataAdesao = cliente.DataAdesao,
+                ContaGrafica = new ContaGraficaResponse
+                {
+                    Id = contaFilhote.Id,
+                    NumeroConta = contaFilhote.NumeroConta,
+                    Tipo = contaFilhote.Tipo.ToString(),
+                    DataCriacao = contaFilhote.DataCriacao
+                }
+            };
         }
     }
 
-    private string GerarNumeroConta()
+    private static string GerarNumeroConta(long clienteId)
     {
-        return Guid.NewGuid().ToString().Substring(0, 10).ToUpper();
+        return $"FLH-{clienteId:D6}";
     }
 }

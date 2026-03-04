@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace DesafioItau.src.Presentation.Controllers.Clientes
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/clientes")]
     public class ClientesController : Controller
     {
 
@@ -24,11 +24,11 @@ namespace DesafioItau.src.Presentation.Controllers.Clientes
             _useCase = useCase;
         }
 
-        [HttpPost]
+        [HttpPost("adesao")]
         public async Task<IActionResult> CriarCliente([FromBody] CriarClienteRequest request)
         {
-            await _useCase.ExecuteAsync(request);
-            return Created("ok", null);
+            var response = await _useCase.ExecuteAsync(request);
+            return Created("/api/clientes/adesao", response);
         }
 
     }
