@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using DesafioItau.src.Domain.Entities;
 
-namespace DesafioItau.src.Infrastructure.Configurations
+namespace DesafioItau.src.Infrastructure.Persistence.Configurations
 {
     public class ClienteConfig : IEntityTypeConfiguration<Clientes>
     {

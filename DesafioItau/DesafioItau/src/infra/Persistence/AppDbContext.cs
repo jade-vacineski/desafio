@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using DesafioItau.src.Domain.Entities;
 
-namespace DesafioItau.src.Infrastructure.Data
+namespace DesafioItau.src.Infrastructure.Persistence
 {
     public class AppDbContext : DbContext
     {

@@ -1,5 +1,5 @@
 using System;
-using DesafioItau.src.Infrastructure.Data;
+using DesafioItau.src.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
