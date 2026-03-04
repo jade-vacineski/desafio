@@ -1,0 +1,43 @@
+using DesafioItau.src.Domain.Cotacoes;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace DesafioItau.src.Infrastructure.Persistence.Configurations
+{
+    public class CotacaoConfig : IEntityTypeConfiguration<Cotacao>
+    {
+        public void Configure(EntityTypeBuilder<Cotacao> builder)
+        {
+            builder.ToTable("Cotacoes");
+
+            builder.HasKey(c => c.Id);
+
+            builder.Property(c => c.DataPregao)
+                .HasColumnType("date")
+                .IsRequired();
+
+            builder.Property(c => c.Ticker)
+                .HasMaxLength(10)
+                .IsRequired();
+
+            builder.Property(c => c.PrecoAbertura)
+                .HasColumnType("decimal(18,4)")
+                .IsRequired();
+
+            builder.Property(c => c.PrecoFechamento)
+                .HasColumnType("decimal(18,4)")
+                .IsRequired();
+
+            builder.Property(c => c.PrecoMaximo)
+                .HasColumnType("decimal(18,4)")
+                .IsRequired();
+
+            builder.Property(c => c.PrecoMinimo)
+                .HasColumnType("decimal(18,4)")
+                .IsRequired();
+
+            builder.HasIndex(c => new { c.DataPregao, c.Ticker })
+                .IsUnique();
+        }
+    }
+}
